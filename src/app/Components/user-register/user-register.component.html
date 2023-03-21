@@ -1,0 +1,95 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+            <section class="container">
+              <form class="m-2" [formGroup]="userFormGroup" (ngSubmit)="addUser()">
+                <div class="row">
+                  <div class="mb-3 col-6">
+                    <label for="usrName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" name="usrName" id="usrName" formControlName="fullName"
+                      [class.is-valid]="fullName?.valid" [class.is-invalid]="fullName?.invalid"
+                      [(ngModel)]="newUser.userName" />
+                  </div>
+                  <div class="alert alert-danger" [hidden]="fullName?.valid || fullName?.untouched">
+                    <small *ngIf="fullName?.errors?.['required']">Full name is required</small>
+                    <small *ngIf="fullName?.errors?.['pattern']">Full name must be atleast 3 letters</small>
+                  </div>
+  
+                  <div class="mb-3 col-6">
+                    <label for="usrEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="usrEmail" id="usrEmail" formControlName="email"
+                      [(ngModel)]="newUser.userEmail" [class.is-valid]="email?.valid"
+                      [class.is-invalid]="email?.invalid" />
+                  </div>
+                  <div class="alert alert-danger" [hidden]="email?.valid || email?.untouched">
+                    <small *ngIf="email?.errors?.['required']">email is required</small>
+                    <small *ngIf="email?.errors?.['pattern']">email must have @ and .com i last of it</small>
+                  </div>
+                </div>
+                
+
+                <div formArrayName="mobileNo">
+                  <div class="mb-3 ms-2" *ngFor="let mobile of mobileNo.controls; let i = index">
+                    <label class="form-label" for="mobileNo{{ i + 1 }}">Mobile No.</label>
+                    <input type="number" class="form-control" name="mobileNo{{ i + 1 }}" id="mobileNo {{ i + 1 }}"
+                      [formControlName]="i" />
+                    <button class="btn btn-primary m-3 d-inline-block" (click)="addMobile()"
+                      *ngIf="mobile.value && i == mobileNo.controls.length - 1">
+                      Add another number
+                    </button>
+                    <button class="btn btn-danger" (click)="removeMobile(i)"
+                      [hidden]="i == mobileNo.controls.length - 1">
+                      Remove this number
+                    </button>
+                  </div>
+                </div>
+
+                <div formGroupName="address">
+                  Address:
+                  <div class="mb-3 ms-2">
+                    <label for="usrCity" class="form-label">city</label>
+                    <input type="text" class="form-control" name="city" id="usrCity" formControlName="city" />
+                  </div>
+                  <div class="mb-3 ms-2">
+                    <label for="usrStreet" class="form-label">Street</label>
+                    <input type="text" class="form-control" name="street" id="usrStreet" formControlName="street" />
+                  </div>
+                  <div class="mb-3 ms-2">
+                    <label for="userPostaCode" class="form-label">Postal code</label>
+                    <input type="number" class="form-control" name="postalCode" id="userPostaCode"
+                      formControlName="postalCode" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="mb-3 col-6">
+                    <label for="usrPass" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="usrPass" id="usrPass" formControlName="password"
+                      [(ngModel)]="newUser.userPass" [class.is-valid]="password?.valid"
+                      [class.is-invalid]="password?.invalid" />
+                  </div>
+  
+                  <div class="mb-3 col-6">
+                    <label for="usrRePass" class="form-label">Retype Password</label>
+                    <input type="password" class="form-control" name="usrRePass" id="usrRePass"
+                      formControlName="rePassword" [(ngModel)]="newUser.userRePass" [class.is-valid]="rePassword?.valid"
+                      [class.is-invalid]="rePassword?.invalid" />
+                  </div>
+                </div>
+                
+                <br />
+                <button type="submit" class="btn btn-primary col-12" [disabled]="userFormGroup.invalid">
+                  Submit
+                </button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

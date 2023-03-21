@@ -1,0 +1,22 @@
+<div class="container custom-container d-flex justify-content-center text-center">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="email" [(ngModel)]="user.email" class="form-control m-3" placeholder="Email"
+                pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*" />
+        </div>
+
+        <div class="form-group">
+            <input type="password" [(ngModel)]="user.password" class="form-control m-3" placeholder="Password"
+                pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$" />
+        </div>
+
+        <div class="form-group">
+            <button [disabled]="isUserLogged" type="button" class="btn btn-success m-3" (click)="login()">
+                Login
+            </button>
+            <button [disabled]="!isUserLogged" type="button" class="btn btn-danger m-3" (click)="logout()">
+                Logout
+            </button>
+        </div>
+    </div>
+</div>

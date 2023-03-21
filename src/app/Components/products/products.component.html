@@ -1,0 +1,40 @@
+<img [src]="store.logo" width="100%" height="100vh" *ngIf="showImg">
+<div *ngIf="hideImg" id="thanks">Thanks for purchasing from our store {{clientName}}</div>
+<table class="table">
+    <thead>
+        <tr class="bg-danger text-light">
+            <th scope="col">Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Count</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Details</th>
+            <th scope="col">Buy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr scope="row" *ngFor="let prd of prdListOfCat ; let i = index" [style.display]="(prd.quantity==0)?'none':''"
+            [style.background-color]="(prd.quantity==1)?'yellow':''">
+            <td>{{i+1}}</td>
+            <td>{{prd.name}}</td>
+            <td>{{prd.quantity}}</td>
+            <td>{{prd.price|currency:"GBP":"symbol"}}</td>
+            <td><img [src]="prd.img" width="150vw" height="100vh" appBorderBox></td>
+            <td><input type="number" class="form-control" #itemsCount (keydown)="disable()" min="1" max={{prd.quantity}}
+                    value="1"></td>
+            <!-- <td><button class="btn btn-dark" [routerLink]="['/Products',prd.id]">Details</button></td> -->
+            <td><button class="btn btn-dark" routerLink="/Update/{{ prd.id }}">Update</button></td>
+            <td><button class="btn btn-dark" type="submit" (click)="deleteProduct(prd.id)">Delete</button></td>
+            <td><button class="btn btn-dark open" (click)="openDetails(prd.id)">Details</button></td>
+            <td><button class="btn btn-dark" [disabled]="prd.quantity==0"
+                    (click)="updateTotalPrice(prd.price,itemsCount.value)" (click)="toggleImg()"
+                    (click)="decrease(prd,itemsCount.value)"
+                    (click)="getProduct(prd.name,prd.price,itemsCount.value)">Buy</button></td>
+
+            <!-- <td><button class="btn btn-dark" (click)="toggleImg()" (click)="decrease(prd)">Buy</button></td> -->
+        </tr>
+    </tbody>
+</table>

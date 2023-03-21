@@ -1,0 +1,43 @@
+<form (ngSubmit)="add()">
+  <div class="row">
+    <!-- <div class="col-md-12">
+      <label for="inputEmail4" class="form-label">ID</label>
+      <input type="number" class="form-control" id="inputEmail4" name="prdId" [(ngModel)]="newprd.id">
+    </div> -->
+    <div class="col-md-12">
+      <label for="inputEmail4" class="form-label">Product Name</label>
+      <input type="text" #prdNameInp="ngModel" class="form-control" id="inputEmail4" name="prdName" [(ngModel)]="newprd.name" required pattern="[A-Za-z]{3,}">
+      <div class="alert alert-warning" [hidden]="prdNameInp.valid || prdNameInp.untouched">
+        <small *ngIf = "prdNameInp.errors?.['required']">Name is required</small>
+        <small *ngIf = "prdNameInp.errors?.['pattern']">Name must bet more than 3 letters</small>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label for="inputPassword4" class="form-label">Quantity</label>
+      <input type="text" class="form-control" id="inputPassword4" name="prdQuantity" [(ngModel)]="newprd.quantity">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Price</label>
+      <input type="number" class="form-control" id="inputAddress" name="prdPrice" [(ngModel)]="newprd.price">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress2" class="form-label">Image URL</label>
+      <input type="Text" class="form-control" id="inputAddress2" name="prdImg" [(ngModel)]="newprd.img">
+    </div>
+    <div class="col-md-12">
+      <label for="cat" class="form-label">Category ID</label>
+      <select name="cat" id="cat" class="form-control" name="prdCat" [(ngModel)]="newprd.categoryId">
+        <option *ngFor="let cat of catList" [value]="cat.id" >{{cat.name}}</option>
+    </select>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-dark" type="submit">Add</button>
+    </div>
+  </div>
+
+  <!-- (click)="add(id.value,name.value,quantity.value,price.value,img.value,CID.value)" -->
+  
+</form>
+
+
+ 

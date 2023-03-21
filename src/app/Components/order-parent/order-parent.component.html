@@ -1,0 +1,32 @@
+<div>&nbsp;</div>
+<select name="cat" id="cat" class="form-control" [(ngModel)]="selectedCatID">
+    <option value="0">All</option>
+    <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+</select>
+
+
+<app-products [receivedCatID]="selectedCatID" (totalPriceChangedEv)="totalInparentFunc($event)"
+    (wholeProducts)="addToCart($event)"></app-products>
+
+
+<table class="table">
+    <thead>
+        <tr class="bg-danger text-light">
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Count</th>
+            <th scope="col">Purchasing Date</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let crt of cartArr">
+        <tr scope="row">
+            <td>{{crt[0]|uppercase}}</td>
+            <td>{{crt[1]|currency:"GBP":"symbol"}}</td>
+            <td>{{crt[2]}}</td>
+            <td>{{date|date:"long"}}</td>
+            <td>{{crt[3]|currency:"GBP":"symbol"}}</td>
+        </tr>
+    </tbody>
+</table>
+<h2 class="bg-danger text-light">Total Price : {{receivedTotalPrice}}</h2>

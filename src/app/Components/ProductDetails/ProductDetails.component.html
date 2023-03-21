@@ -1,0 +1,18 @@
+<div class="card row" appBorderBox>
+  <img src="{{prd?.img}}"  class="card-img-top" height="270px" >
+  <div class="card-body">
+    <h5 class="card-title">{{prd?.name}}</h5>
+    <div class="card-text">
+      <div>Price:{{prd?.price}}</div>
+      <div>Quantity:{{prd?.quantity}}</div>
+    </div>
+    <button class="btn btn-dark col-12" (click)="back()">Back</button>
+    <div>&nbsp;</div>
+    <button class="btn btn-success col-12" (click)="nextPrd()" [disabled]="currentID==prodIdList[prodIdList.length-1]">Next Product</button>
+    <div>&nbsp;</div>
+    <button class="btn btn-warning col-12" (click)="prevPrd()" [disabled]="currentID==prodIdList[0]" >Previous Product</button>
+
+  </div>
+</div>
+
+

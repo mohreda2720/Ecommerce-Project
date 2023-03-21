@@ -1,0 +1,23 @@
+<div class="container">
+  <form class="form-control">
+      <div class="row">
+          <label for="inputid" class="form-label">National ID:</label>
+          <input type="text" class="form-control" id="inputid" #ID>
+      </div>
+      <div>&nbsp;</div>
+      <button class="btn btn-success">Show your birth date</button>
+      <h3 id="format">Your birth Date is : {{ID.value|national:"mm"}}</h3>
+  </form>
+  <div>&nbsp;</div>
+  <form class="form-control">
+      <div class="row">
+          <label for="inputcredit" class="form-label">Credit Card Number:</label>
+          <input type="text" class="form-control" id="inputcredit" #credit>
+      </div>
+      <div>&nbsp;</div>
+      <button class="btn btn-success">Transform</button>
+      <h3 id="format">The New Format : {{credit.value|credit}}</h3>
+  
+  </form>
+</div>
+
